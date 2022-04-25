@@ -3,29 +3,11 @@ import sys
 import json
 import praw
 import argparse
+import sched
+import time
 
-from utils import get_flair_id
-
-def submit_post(subreddit_name: str, flair: str, title: str, text: str):
-    credentials_filename = "client_secrets.json"
-    with open(credentials_filename, "r") as file:
-        credentials = json.load(file)
-
-    reddit = praw.Reddit(
-        client_id=credentials["client_id"],
-        client_secret=credentials["client_secret"],
-        user_agent=credentials["user_agent"],
-        redirect_uri=credentials["redirect_uri"],
-        refresh_token=credentials["refresh_token"],
-    )
-
-    reddit.validate_on_submit = True
-
-    subreddit = reddit.subreddit(subreddit_name)
-
-    flair_id = get_flair_id(flair, subreddit)
-
-    subreddit.submit(title, selftext=text, flair_id=flair_id)
+from Post import Post
+from utils import get_flair_id, parse_details
 
 
 def main():
@@ -35,20 +17,16 @@ def main():
 
     required = parser.add_argument_group("Required")
 
-    required.add_argument("-s", "--subreddit", help="Name of subreddit", type=str, required=True)
-    required.add_argument("-t", "--title", help="Post title", type=str, required=True)
-    required.add_argument("-b", "--body", help="Post body content", type=str, required=True)
-    parser.add_argument("-f", "--flair", help="Post flair", type=str)
+    required.add_argument("-p", "--post", help="Path to json file containing post details", type=str, required=True)
 
     parser._action_groups.reverse()
 
     args = parser.parse_args()
 
-    if not args.subreddit or not args.title or not args.body:
-        parser.print_usage()
-        sys.exit(1)
+    post = parse_details(args.post)
 
-    submit_post(args.subreddit, args.flair, args.title, args.body)
+    time = post.date
+    print(time)
 
 if __name__ == "__main__":
     main()
