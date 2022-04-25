@@ -1,6 +1,22 @@
 import json
 import praw
+import subprocess
+
 from Post import Post
+
+def command_at_timestamp(command: str, timestamp: int) -> str:
+    """
+    Uses the linux package `at` to schedule the given command to be run
+    at the specified timestamp (seconds)
+    """
+    at_string = f'at `date -d @{timestamp} +"%I:%M %p %b %d"`'
+    args = ["echo", command, "|", at_string]
+    command = f"echo {command} | {at_string}"
+    # shell=True is bad practice, but this does not work without it
+    subprocess.run(command, shell=True)
+
+
+    return command
 
 def get_flair_id(name: str, subreddit) -> str:
     """
