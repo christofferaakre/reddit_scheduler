@@ -1,0 +1,45 @@
+.form-element-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+label {
+    font-size: 16pt;
+}
+
+* {
+ background-color: #101010;
+ color: white;
+ font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+.form-element-wrapper {
+    margin: 15px;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+input, textarea {
+    margin-top: 10px;
+    padding: 10px;
+}
+
+button#submit {
+    background-color: #03A9F4;
+    color: white;
+    padding: 20px;
+    padding-
+    font-size: 12pt;
+    border-radius: 15px;
+}
+
+body {
+}

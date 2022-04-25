@@ -6,7 +6,7 @@ def main():
 
     @app.route("/")
     def submission_form():
-        return "<h1>Form</h1>"
+        return app.send_static_file('submit_post.html')
 
     app.run(debug=True)
 
