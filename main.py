@@ -11,9 +11,6 @@ def submit_post(subreddit_name: str, flair: str, title: str, text: str):
     with open(credentials_filename, "r") as file:
         credentials = json.load(file)
 
-
-    print(args)
-
     reddit = praw.Reddit(
         client_id=credentials["client_id"],
         client_secret=credentials["client_secret"],
@@ -24,15 +21,11 @@ def submit_post(subreddit_name: str, flair: str, title: str, text: str):
 
     reddit.validate_on_submit = True
 
-    subreddit_name = "negosakitest"
     subreddit = reddit.subreddit(subreddit_name)
 
-    title = "Test post from script"
-    selftext = "Test post body text\n\n*Italics* markdown\n\n**Bold** markdown\n\nshould be a newline before this\n\ntwo newlines before this<br>\n\nbr before this"
+    flair_id = get_flair_id(flair, subreddit)
 
-    flair_id = get_flair_id("Script offer", subreddit)
-
-    subreddit.submit(title, selftext=selftext, flair_id=flair_id)
+    subreddit.submit(title, selftext=text, flair_id=flair_id)
 
 
 def main():
@@ -44,18 +37,18 @@ def main():
 
     required.add_argument("-s", "--subreddit", help="Name of subreddit", type=str, required=True)
     required.add_argument("-t", "--title", help="Post title", type=str, required=True)
-    parser.add_argument("-b", "--body", help="Post body content", type=str)
+    required.add_argument("-b", "--body", help="Post body content", type=str, required=True)
     parser.add_argument("-f", "--flair", help="Post flair", type=str)
 
     parser._action_groups.reverse()
 
     args = parser.parse_args()
 
-    if not args.subreddit or not args.title:
+    if not args.subreddit or not args.title or not args.body:
         parser.print_usage()
         sys.exit(1)
 
-    submit_post(args.subreddit, args.flair, args.title, args.text)
+    submit_post(args.subreddit, args.flair, args.title, args.body)
 
 if __name__ == "__main__":
     main()
