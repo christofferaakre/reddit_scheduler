@@ -7,7 +7,7 @@ import sched
 import time
 
 from Post import Post
-from utils import get_flair_id, parse_details
+from utils import command_at_timestamp, get_flair_id, parse_details
 
 
 def main():
@@ -26,7 +26,12 @@ def main():
     post = parse_details(args.post)
 
     time = post.date
-    print(time)
+
+    post_command = f"~/coding/reddit/submit_post.py {args.post}"
+
+    command = command_at_timestamp(post_command, time)
+
+    print(f"Scheduled command {command} at time {time}")
 
 if __name__ == "__main__":
     main()

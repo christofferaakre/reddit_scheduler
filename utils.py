@@ -15,7 +15,6 @@ def command_at_timestamp(command: str, timestamp: int) -> str:
     # shell=True is bad practice, but this does not work without it
     subprocess.run(command, shell=True)
 
-
     return command
 
 def get_flair_id(name: str, subreddit) -> str:
