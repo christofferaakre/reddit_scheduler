@@ -4,6 +4,8 @@ import uuid
 import json
 import os
 from path import Path
+import ciso8601
+from time import mktime
 
 from posts import schedule_post
 
@@ -19,7 +21,9 @@ def main():
     @app.route("/schedule_post", methods=["POST", "GET"])
     def process_submission():
         form_data = request.form.to_dict()
-        form_data['date'] = int(form_data['date'])
+        ts = ciso8601.parse_datetime(form_data['date'])
+        timestamp = mktime(ts.timetuple())
+        form_data['date'] = timestamp
         filename = f'{uuid.uuid4()}.json'
         save_path = posts_directory / filename
         with open(save_path, 'w') as file:
