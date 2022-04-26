@@ -1,6 +1,8 @@
 client_secrets.json
 markdown.json
 
+posts/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
