@@ -12,7 +12,8 @@ into a `client_secrets.json`:
     * `client_secret`: Client secret
     * `user_agent`: "Some user agent, can be anything"
     * `redirect_uri`: "http://localhost:8080"
-    * `refresh_token`: Your reddit account's refresh token
+    * `refresh_token`: Your reddit account's refresh token. You can generate one
+    by running the `refreshtoken.py` script.
 2. Git clone repo
 3. `chmod +x setup.sh && ./setup.sh` or run the commands in that script yourself
 4. Check that `at`, `atq` and `atrm` are in your PATH
