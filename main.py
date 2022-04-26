@@ -8,6 +8,7 @@ import time
 
 from Post import Post
 from utils import command_at_timestamp, get_flair_id, parse_details
+from posts import schedule_post
 
 
 def main():
@@ -23,13 +24,7 @@ def main():
 
     args = parser.parse_args()
 
-    post = parse_details(args.post)
-
-    time = post.date
-
-    post_command = f"~/coding/reddit/submit_post.py {args.post}"
-
-    command = command_at_timestamp(post_command, time)
+    command, time = schedule_post(args.post)
 
     print(f"Scheduled command {command} at time {time}")
 

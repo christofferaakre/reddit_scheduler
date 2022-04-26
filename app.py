@@ -19,9 +19,11 @@ def main():
         form_data = request.form.to_dict()
         print(form_data)
         filename = f'{uuid.uuid4()}.json'
+
         with open(posts_directory / filename, 'w') as file:
             json_string = json.dumps(form_data, indent=2)
             file.write(json_string)
+
 
         print(f'filename: {filename}')
         return redirect('/')
