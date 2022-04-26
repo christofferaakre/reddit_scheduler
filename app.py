@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from flask import Flask, request
+from flask import Flask, request, redirect, url_for
 import uuid
 import json
 import os
@@ -14,7 +14,7 @@ def main():
     def submission_form():
         return app.send_static_file('submit_post.html')
 
-    @app.route("/schedule_post", methods=["POST"])
+    @app.route("/schedule_post", methods=["POST", "GET"])
     def process_submission():
         form_data = request.form.to_dict()
         print(form_data)
@@ -24,7 +24,7 @@ def main():
             file.write(json_string)
 
         print(f'filename: {filename}')
-        return request.get_json()
+        return redirect('/')
 
     app.run(debug=True)
 
