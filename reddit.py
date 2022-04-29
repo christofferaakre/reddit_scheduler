@@ -10,5 +10,4 @@ reddit = praw.Reddit(
     client_secret=credentials["client_secret"],
     user_agent=credentials["user_agent"],
     redirect_uri=credentials["redirect_uri"],
-    # refresh_token=credentials["refresh_token"],
 )
