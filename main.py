@@ -8,8 +8,9 @@ import time
 
 from Post import Post
 from utils import command_at_timestamp, get_flair_id, parse_details
-from posts import schedule_post
+from posts import schedule_post, submit_post
 
+from reddit import reddit
 
 def main():
     parser = argparse.ArgumentParser(
@@ -23,6 +24,9 @@ def main():
     parser._action_groups.reverse()
 
     args = parser.parse_args()
+
+    auth_url = print(reddit.auth.url(["identity"], "...", "permanent"))
+    return redirect(auth_url)    
 
     command, time = schedule_post(args.post)
 
