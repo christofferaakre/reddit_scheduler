@@ -18,7 +18,7 @@ into a `client_secrets.json`:
 
     The redirect url for the app should be `http://localhost:8080/submit_post`
 
-2. Git clone repo
+2. Git clone repo and `chmod +x app.py`
 3. Assuming debian-like distro, run `chmod +x setup.sh && ./setup.sh` or run the commands in that script yourself. For other
 distros, you will have to look in the file and figure out how to install dependencies etc. yourself, but it should
 be fairly straight-forward.
