@@ -1,9 +1,17 @@
 nav {
-    width: 100%;
+display: flex;
+justify-content: space-between;
 }
 
 nav ul {
     display: flex;
+}
+
+na ul.left {
+    justify-content: start;
+}
+
+nav ul.right {
     justify-content: end;
 }
 
@@ -58,6 +66,16 @@ button, button * {
     font-size: 12pt;
 }
 
+a {
+    text-decoration: none;
+    color: #03A9F4;
+        text-weight: bold;
+}
+
+b {
+ text-weight: bold;   
+}
+
 button a {
     background-color: transparent;
     display: block;
@@ -66,9 +84,22 @@ button a {
     padding: 0;
 }
 
-a {
-    text-decoration: none;
+button:hover {
+    cursor: pointer;
 }
 
+
+
 body {
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-container p {
+    width: 75%;
 }

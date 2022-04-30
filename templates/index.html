@@ -5,17 +5,33 @@
 <head>
   <meta charset="UTF-8">
   <title>Reddit post pcheduler</title>
-  <link href="http://fonts.cdnfonts.com/css/roboto" rel="stylesheet">
-  <link href="static/index.css" rel="stylesheet">
+  {% include "links.html" %}
+
 </head>
 
 <body>
-
-
   <div id="container">
     <h1> Reddit post scheduler</h1>
+    <div class="text-container">
+      <p>
+        Welcome to the reddit post scheduler! This web application
+        allows you to schedule a reddit post to be posted at a later time/date.
+        Click the button below to get started.
+      </p>
 
+      <p>
+        To authenticate your reddit account,
+        <a href="https://oauth.net/2/">OAuth 2</a> is used.
+        <b>At no point does the application know your credentials
+          or store any personal information.</b>
 
+        You can view the source
+        code on Github by clicking this
+        <a href="https://github.com/christofferaakre/reddit_scheduler">
+          link.
+        </a>
+      </p>
+    </div>
     <form method="GET" action="/submit_post">
       <div class="button-wrapper">
         <button type="submit">
