@@ -15,7 +15,7 @@ code = None
 
 
 app = Flask(__name__)
-posts_directory = Path(os.path.expanduser("~/posts"))
+posts_directory = Path(__file__).parent.parent
 
 @app.route("/", methods=["GET"])
 def index_page():
