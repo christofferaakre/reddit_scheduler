@@ -1,9 +1,11 @@
-from Post import Post
-from utils import get_flair_id, parse_details, command_at_timestamp
+from path import Path
+
+from .Post import Post
+from .utils import get_flair_id, parse_details, command_at_timestamp
 
 from typing import Tuple
 
-from reddit import reddit
+from .reddit import reddit
 
 
 def submit_post(post: Post, code: str):
@@ -32,7 +34,8 @@ def schedule_post(json_file: str, code: str) -> Tuple[str, int]:
 
     time = post.date
 
-    post_command = f"./submit_post.py {json_file} {code}"
+    script = Path(__file__).parent.parent.parent / "submit_post.py"
+    post_command = f"{script} {json_file} {code}"
 
     command = command_at_timestamp(post_command, time)
     return command, time

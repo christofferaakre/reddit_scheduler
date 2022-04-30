@@ -1,8 +1,12 @@
+import os
+from path import Path
 import json
 import praw
 
-credentials_filename = "client_secrets.json"
-with open(credentials_filename, "r") as file:
+filename = "client_secrets.json"
+path = Path(__file__).parent / filename
+
+with path.open("r") as file:
     credentials = json.load(file)
 
 reddit = praw.Reddit(

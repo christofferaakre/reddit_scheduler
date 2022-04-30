@@ -1,7 +1,7 @@
 import json
 import subprocess
 
-from Post import Post
+from .Post import Post
 
 
 def command_at_timestamp(command: str, timestamp: int) -> str:
