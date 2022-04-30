@@ -13,7 +13,7 @@ from posts import schedule_post
 from reddit import reddit
 
 code = None
-redirected = False
+
 
 def main():
     app = Flask(__name__)
@@ -23,8 +23,7 @@ def main():
     @app.route("/", methods=["GET"])
     def index_page():
         return render_template("index.html")
-        # return app.send_static_file("index.html")
-    
+
     @app.route("/submit_post", methods=["GET"])
     def submission_form():
         global code
@@ -42,7 +41,6 @@ def main():
 
         print(f"code: {code}")
         return render_template("submit_post.html")
-        # return app.send_static_file("submit_post.html")
 
     @app.route("/schedule_post", methods=["POST"])
     def process_submission():
