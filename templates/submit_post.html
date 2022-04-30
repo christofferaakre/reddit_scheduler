@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+{%include "navbar.html" %}
+
+<head>
+  <meta charset="UTF-8">
+  <title>Schedule a post</title>
+  <link href="http://fonts.cdnfonts.com/css/roboto" rel="stylesheet">
+  <link href="static/index.css" rel="stylesheet">
+</head>
+
+<body>
+  <h1> Schedule a post </h1>
+
+  <form method="POST" action="/schedule_post">
+    <div class="form-element-wrapper">
+      <label for="subreddit">Subreddit
+      </label>
+      <input type="text" name="subreddit" placeholder="e.g. r/gaming">
+    </div>
+
+    <div class="form-element-wrapper">
+      <label for="Title">Title
+      </label>
+      <input type="text" name="title" placeholder="Title of post">
+    </div>
+
+    <div class="form-element-wrapper">
+      <label for="flair">Flair
+      </label>
+      <input type="text" name="flair" placeholder="Post flair">
+    </div>
+
+    <div class="form-element-wrapper">
+      <label for="body">Text content of post
+      </label>
+      <textarea name="body" cols="30" rows="10" placeholder="Text content"></textarea>
+    </div>
+
+    <div class="form-element-wrapper">
+      <label for="date">Date
+      </label>
+      <input type="datetime-local" name="date" placeholder="Date of post">
+    </div>
+
+    <div class="button-wrapper">
+      <button id="submit" type="submit">
+        Schedule
+      </button>
+    </div>
+  </form>
+</body>
+
+</html>

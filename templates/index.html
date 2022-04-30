@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "navbar.html" %}
+
+<head>
+  <meta charset="UTF-8">
+  <title>Reddit post pcheduler</title>
+  <link href="http://fonts.cdnfonts.com/css/roboto" rel="stylesheet">
+  <link href="static/index.css" rel="stylesheet">
+</head>
+
+<body>
+
+
+  <div id="container">
+    <h1> Reddit post scheduler</h1>
+
+
+    <form method="GET" action="/submit_post">
+      <div class="button-wrapper">
+        <button type="submit">
+          Schedule a post
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>

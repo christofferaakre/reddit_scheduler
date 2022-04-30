@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from flask import Flask, request, redirect
+from flask import Flask, request, redirect, render_template
 import uuid
 import json
 import os
@@ -7,26 +7,32 @@ from path import Path
 import ciso8601
 from time import mktime
 
-from utils import parse_details
 from posts import schedule_post
 
 
 from reddit import reddit
 
 code = None
-
+redirected = False
 
 def main():
     app = Flask(__name__)
     PORT = 8080
     posts_directory = Path(os.path.expanduser("~/posts"))
 
-    @app.route("/")
+    @app.route("/", methods=["GET"])
+    def index_page():
+        return render_template("index.html")
+        # return app.send_static_file("index.html")
+    
+    @app.route("/submit_post", methods=["GET"])
     def submission_form():
         global code
         if not code:
             args = request.args
             code = args.get("code")
+        print(f"submission form, code: {code}")
+        if not code:
             auth_url = reddit.auth.url(
                 ["submit", "identity", "flair"],
                 "...",
@@ -35,10 +41,12 @@ def main():
             return redirect(auth_url)
 
         print(f"code: {code}")
-        return app.send_static_file("submit_post.html")
+        return render_template("submit_post.html")
+        # return app.send_static_file("submit_post.html")
 
     @app.route("/schedule_post", methods=["POST"])
     def process_submission():
+        global code
         form_data = request.form.to_dict()
         ts = ciso8601.parse_datetime(form_data["date"])
         timestamp = mktime(ts.timetuple())
@@ -53,6 +61,7 @@ def main():
 
         # submit_post(post, code)
         command, time = schedule_post(save_path, code=code)
+        code = None
 
         return redirect("/")
 

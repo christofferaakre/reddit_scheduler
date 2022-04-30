@@ -24,7 +24,6 @@ def submit_post(post: Post, code: str):
 
     subreddit.submit(post.title, selftext=post.body, flair_id=flair_id)
 
-
 def schedule_post(json_file: str, code: str) -> Tuple[str, int]:
     """
     Schedule the given post
