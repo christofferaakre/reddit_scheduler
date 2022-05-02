@@ -3,7 +3,15 @@ from path import Path
 import json
 import praw
 
-filename = "client_secrets.json"
+from .utils import read_env
+
+env = read_env()
+
+if env == "dev":
+    filename = "client_secrets_dev.json"
+elif env == "prod":
+    filename = "client_secrets.json"
+
 path = Path(__file__).parent / filename
 
 with path.open("r") as file:

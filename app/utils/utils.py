@@ -1,8 +1,23 @@
 import json
 import subprocess
+from path import Path
 
 from .Post import Post
 
+path = Path(__file__).parent.parent.parent
+env_file = path / "env"
+
+def set_env(env: str):
+    if env not in ["dev", "prod"]:
+        raise ValueError(f"env must be 'dev' or 'prod', not {env}")
+
+    with open(env_file, "w") as file:
+        file.write(env)
+
+def read_env():
+    with open(env_file, "r") as file:
+        env = file.read()
+    return env
 
 def command_at_timestamp(command: str, timestamp: int) -> str:
     """

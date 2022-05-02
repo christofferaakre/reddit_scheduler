@@ -2,6 +2,9 @@ markdown.json
 test-post.json
 code
 *.bak
+posts
+*secret*
+env
 
 posts/
 
