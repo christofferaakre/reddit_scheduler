@@ -1,11 +1,16 @@
 from path import Path
 
 from .Post import Post
-from .utils import get_flair_id, parse_details, command_at_timestamp
+from .utils import get_flair_id, parse_details, run_at
 
 from typing import Tuple
 
 from .reddit import reddit
+
+import asyncio
+from datetime import datetime
+import sched
+import time
 
 
 def submit_post(post: Post, code: str):
@@ -26,7 +31,7 @@ def submit_post(post: Post, code: str):
 
     subreddit.submit(post.title, selftext=post.body, flair_id=flair_id)
 
-def schedule_post(json_file: str, code: str) -> Tuple[str, int]:
+async def schedule_post(json_file: str, code: str) -> None:
     """
     Schedule the given post
     """
@@ -34,8 +39,7 @@ def schedule_post(json_file: str, code: str) -> Tuple[str, int]:
 
     time = post.date
 
-    script = Path(__file__).parent.parent.parent / "submit_post.py"
-    post_command = f"{script} {json_file} {code}"
-
-    command = command_at_timestamp(post_command, time)
-    return command, time
+    date = datetime.fromtimestamp(time)            
+    
+    loop = asyncio.get_event_loop()
+    loop.create_task(run_at(date, submit_post(post, code)))

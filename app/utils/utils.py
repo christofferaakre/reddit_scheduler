@@ -1,5 +1,8 @@
 import json
 import subprocess
+import asyncio
+import datetime
+
 from path import Path
 
 from .Post import Post
@@ -57,3 +60,17 @@ def parse_details(json_file: str) -> Post:
     )
 
     return post
+
+
+# taken from 
+# https://stackoverflow.com/a/51294509/8304249
+
+async def wait_until(dt):
+    # sleep until the specified datetime
+    now = datetime.datetime.now()
+    await asyncio.sleep((dt - now).total_seconds())
+
+
+async def run_at(dt, coro):
+    await wait_until(dt)
+    return await coro

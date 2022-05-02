@@ -15,7 +15,7 @@ code = None
 
 
 app = Flask(__name__)
-posts_directory = Path(__file__).parent / "posts"
+posts_directory = Path(__file__).parent.parent / "posts"
 
 @app.route("/", methods=["GET"])
 def index_page():
@@ -40,7 +40,7 @@ def submission_form():
     return render_template("submit_post.html")
 
 @app.route("/schedule_post", methods=["POST"])
-def process_submission():
+async def process_submission():
     global code
     form_data = request.form.to_dict()
     ts = ciso8601.parse_datetime(form_data["date"])
@@ -55,7 +55,7 @@ def process_submission():
     print(f"filename: {filename}")
 
     # submit_post(post, code)
-    command, time = schedule_post(save_path, code=code)
+    await schedule_post(save_path, code=code)
     code = None
 
     return redirect("/")
