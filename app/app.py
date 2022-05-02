@@ -8,14 +8,18 @@ from time import mktime
 
 from app.utils.posts import schedule_post
 
-
 from app.utils.reddit import reddit
+from app.utils.TaskScheduler import TaskScheduler
 
 code = None
 
 
 app = Flask(__name__)
 posts_directory = Path(__file__).parent.parent / "posts"
+
+task_scheduler = TaskScheduler(polling_interval=3)
+if not task_scheduler.running:
+    task_scheduler.run()
 
 @app.route("/", methods=["GET"])
 def index_page():
@@ -55,7 +59,7 @@ async def process_submission():
     print(f"filename: {filename}")
 
     # submit_post(post, code)
-    await schedule_post(save_path, code=code)
+    schedule_post(save_path, code, task_scheduler)
     code = None
 
     return redirect("/")
