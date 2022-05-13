@@ -1,7 +1,7 @@
 import json
 import praw
 
-credentials_filename = "client_secrets_dev.json"
+credentials_filename = "client_secrets.json"
 with open(credentials_filename, "r") as file:
     credentials = json.load(file)
 
