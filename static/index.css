@@ -1,0 +1,105 @@
+nav {
+display: flex;
+justify-content: space-between;
+}
+
+nav ul {
+    display: flex;
+}
+
+na ul.left {
+    justify-content: start;
+}
+
+nav ul.right {
+    justify-content: end;
+}
+
+nav ul li {
+    margin: 10px;
+    list-style: none;
+}
+
+
+.form-element-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+label {
+    font-size: 16pt;
+}
+
+* {
+ background-color: #101010;
+ color: white;
+ font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+.form-element-wrapper {
+    margin: 15px;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+input, textarea {
+    margin-top: 10px;
+    padding: 10px;
+}
+
+button {
+    background-color: #03A9F4;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+button, button * {
+    color: white;
+    font-size: 12pt;
+}
+
+a {
+    text-decoration: none;
+    color: #03A9F4;
+        text-weight: bold;
+}
+
+b {
+ text-weight: bold;   
+}
+
+button a {
+    background-color: transparent;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+
+
+body {
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-container p {
+    width: 75%;
+}
